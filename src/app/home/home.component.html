@@ -1,0 +1,124 @@
+<nav class="navbar navbar-default">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Expense Manager</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <button class="btn btn-primary" (click)="showModal()">Add Expense</button>
+        <button type="button" class="btn btn-primary" (click) = "logout()">Logout</button>
+      </ul>
+    </div>
+</nav>
+
+<div class="container">
+
+  <div class="row">
+    <h3>This month you've spent: </h3>
+  </div>
+
+  <img  class="img-responsive center-block" src="https://s-media-cache-ak0.pinimg.com/originals/c7/2d/11/c72d11a3d65ca0231b338984bc59e89d.gif" alt="" *ngIf = "isLoading">
+
+  <div *ngIf = "expenses">
+  <div class="row">
+    <div class="jumbotron">
+      <p class="text-center">{{total | currency: symbolDisplay: true}}</p>
+    </div>
+  </div>
+  
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped table-hover ">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Merchant</th>
+            <th>Expense</th>
+            <th>Comment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor = "let expense of expenses">
+            <td>{{expense.date}}</td>
+            <td>{{expense.merchants}}</td>
+            <td>{{expense.totalExpense | currency: symbolDisplay: true }}</td>
+            <td>{{expense.comments}}</td>
+          </tr>
+        </tbody>
+      </table> 
+    </div>
+
+  </div>
+  </div>
+  <div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" bsModal #autoShownModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Auto shown modal</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <fieldset>
+            <div class="form-group">
+              <label for="select" class="col-lg-2 control-label">Merchants</label>
+              <div class="col-lg-10">
+              <select class="form-control" id="select" [(ngModel)] = "merchants" name="merchants">
+                <option>FOOD AND DRINKS</option>
+                <option>BILLS</option>
+                <option>SHOPPING</option>
+                <option>FUEL</option>
+                <option>GROCERIES</option>
+                <option>TRAVEL</option>
+                <option>ENTERTAINMENT</option>
+                <option>OTHERS</option>
+              </select>  
+              </div>
+            </div>
+
+            <div class = "form-group">
+              <label for="inputTotal" class="col-lg-2 control-label">Total</label>
+              <div class="col-lg-10">
+                <input type="number" class="form-control" id="inputTotal" placeholder="Total Expense" [(ngModel)] = "totalExpense" name="totalExpense">
+              </div>
+            </div>
+            
+            <div class = "form-group">
+              <label for="inputDate" class="col-lg-2 control-label">Date</label>
+              <div class="col-lg-10">
+                <input type="date" class="form-control" id="inputDate" [(ngModel)] = "date" name="date">
+              </div>
+            </div>
+
+            <div class="form-group">
+            <label for="inputComments" class="col-lg-2 control-label">Comments</label>
+            <div class="col-lg-10">
+              <textarea class="form-control" rows="3" id="textArea" [(ngModel)] = "comments" name="comments"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-2">
+            <button type="reset" class="btn btn-default" (click)="hideModal()">Cancel</button>
+            <button type="submit" class="btn btn-primary" (click) = "addExpense()">Submit</button>
+          </div>
+          </div>
+
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
