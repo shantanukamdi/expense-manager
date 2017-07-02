@@ -4,7 +4,8 @@ Expense Manager to track all the expenses built using Angular cli and Firebase.
 
 # Like this repo ? Give it a star :)
 
-# [Live demo](expense-manager-2017.herokuapp.com) 
+# Live demo
+https://expense-manager-2017.herokuapp.com
 
 
 # Steps to Run the application locally
