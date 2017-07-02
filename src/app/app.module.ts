@@ -16,7 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { DatabaseService } from './database.service';
 import { RegisterComponent } from './register/register.component';
-
+import { EqualValidator } from './equal-validator.directive'; 
 
 const config = {
     apiKey: "AIzaSyD11K6nGvgYWyQLeQBNaiICZT-890B5dMM",
@@ -32,7 +32,8 @@ const config = {
     AppComponent,
     LoginComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    EqualValidator 
   ],
   imports: [
     BrowserModule,

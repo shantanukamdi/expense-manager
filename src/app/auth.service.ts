@@ -19,4 +19,11 @@ export class AuthService {
   logoutUser(){
     return this.afAuth.auth.signOut();
   }
+
+  registerUser(user){
+    let email = user.email;
+    let password = user.password;
+    console.log(user);
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+  }
 }
