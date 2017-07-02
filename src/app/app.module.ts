@@ -15,6 +15,7 @@ import * as firebase from 'firebase';
 import { HomeComponent } from './home/home.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { DatabaseService } from './database.service';
+import { RegisterComponent } from './register/register.component';
 
 
 const config = {
@@ -30,7 +31,8 @@ const config = {
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
